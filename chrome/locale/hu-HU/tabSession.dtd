@@ -1,0 +1,30 @@
+<!ENTITY config.popup.history.label "Előzmények">
+<!ENTITY config.popup.history.accesskey "m">
+
+<!ENTITY context.tabStart.label "Ugrás a kezdőoldalra">
+<!ENTITY context.tabStart.accesskey "k">
+
+<!ENTITY context.tabLast.label "Ugrás az utolsó oldalra">
+<!ENTITY context.tabLast.accesskey "u">
+
+<!ENTITY config.title "Tab Session History beállítások">
+<!ENTITY config.prefPane.label "Menü">
+<!ENTITY config.prefPane.accesskey "M">
+
+<!ENTITY config.tab.tab.label "Fül helyi menü">
+<!ENTITY config.tab.tab.accesskey "L">
+<!ENTITY config.tab.main.label "Fő helyi menü">
+<!ENTITY config.tab.main.accesskey "F">
+
+<!ENTITY config.caption.label "Menüpontok megjelenítése:">
+
+<!ENTITY config.hiddenTabBarOnly.label "Megjelenítés csak rejtett fülek esetén">
+<!ENTITY config.hiddenTabBarOnly.accesskey "c">
+
+<!ENTITY config.allowHidingBackForward.prefix.label "A">
+<!ENTITY config.allowHidingBackForward.postfix.label "menüpontok engedélyezése">
+<!ENTITY config.allowHidingBackForward.accesskey "r">
+
+<!ENTITY config.maxEntries.label "Előzmények maximális mérete">
+<!ENTITY config.maxEntries.accesskey "x">
+<!ENTITY config.maxEntries.default "alapértelmezett: 50">
