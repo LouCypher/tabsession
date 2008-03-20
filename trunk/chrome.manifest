@@ -1,9 +1,12 @@
 content   tabsession                    chrome/content/
 skin      tabsession    classic/1.0     chrome/skin/classic/
+locale    tabsession    en-US           chrome/locale/en-US/
+locale    tabsession    hu-HU           chrome/locale/hu-HU/
 
 overlay   chrome://browser/content/browser.xul  chrome://tabsession/content/tabSession.xul
 style     chrome://browser/content/browser.xul  chrome://tabsession/skin/tabSession.css
 
-locale    tabsession    en-US           jar:chrome/tabsession.jar!/locale/en-US/
-locale    tabsession    hu-HU           jar:chrome/tabsession.jar!/locale/hu-HU/
+# Songbird
+overlay   chrome://songbird/content/feathers/basic-layouts/xul/mainplayer.xul           chrome://tabsession/content/tabSession.xul
+style     chrome://songbird/content/feathers/basic-layouts/xul/mainplayer.xul           chrome://tabsession/skin/tabSession.css
 
