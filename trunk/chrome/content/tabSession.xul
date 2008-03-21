@@ -19,13 +19,14 @@
       <menu id="context-tabSession-history"
             insertafter="context-forward"
             label="&config.popup.history.label;"
-            accesskey="&config.popup.history.accesskey;">
+            accesskey="&config.popup.history.accesskey;"
+            hidden="true">
         <menupopup
           onpopupshowing="TabSession.populateHistoryMenu(this);"
           oncommand="TabSession.gotoIndex(event);"
           onclick="checkForMiddleClick(this, event);"
           onmouseover="TabSession.setStatusMessage(event.target);"
-          onmouseout="TabSession.clearStatusMessage();"  />
+          onmouseout="TabSession.clearStatusMessage();" />
       </menu>
 
       <menuitem
@@ -37,7 +38,8 @@
         oncommand="TabSession.gotoIndex(event);"
         onclick="checkForMiddleClick(this, event);"
         onmouseover="TabSession.setStatusMessage(this);"
-        onmouseout="TabSession.clearStatusMessage();" />
+        onmouseout="TabSession.clearStatusMessage();"
+        hidden="true" />
 
       <menuitem
         id="context-tabSession-start"
@@ -48,21 +50,24 @@
         oncommand="TabSession.gotoIndex(event);"
         onclick="checkForMiddleClick(this, event);"
         onmouseover="TabSession.setStatusMessage(this);"
-        onmouseout="TabSession.clearStatusMessage();" />
+        onmouseout="TabSession.clearStatusMessage();"
+        hidden="true" />
 
       <menuitem
         id="context-forward"
         label="&forwardCmd.label;"
         accesskey="&forwardCmd.accesskey;"
         onmouseover="TabSession.setStatusMessage(this);"
-        onmouseout="TabSession.clearStatusMessage();" />
+        onmouseout="TabSession.clearStatusMessage();"
+        hidden="true" />
 
       <menuitem
         id="context-back"
         label="&backCmd.label;"
         accesskey="&backCmd.accesskey;"
         onmouseover="TabSession.setStatusMessage(this);"
-        onmouseout="TabSession.clearStatusMessage();" />
+        onmouseout="TabSession.clearStatusMessage();"
+        hidden="true" />
     </popup>
 
     <popup id="tabSession-popup">
