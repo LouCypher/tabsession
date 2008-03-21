@@ -152,7 +152,7 @@ var TabSession = {
         !this.prefs.getBoolPref("allowHidingContentBackForward")) return;
     //aNode.setAttribute("disabled", aCondition);
     aNode.setAttribute("collapsed", aCondition);
-    if (typeof gContextMenu == "object") {
+    if (gContextMenu) {
       aNode.hidden = !this.menuShown("content" + this.MENU[aMenu]) ||
                      (this.menuShown("contentHiddenTabBarOnly") &&
                       !getBrowser().mStrip.collapsed) ||
@@ -168,7 +168,7 @@ var TabSession = {
   },
 
   initContext: function tabSession_initContext(aEvent) {
-    if (typeof gContextMenu == "object") {
+    if (gContextMenu) {
       getBrowser().mContextTab = null;
     }
     var browser = this.getBrowser();
@@ -178,7 +178,7 @@ var TabSession = {
     var count = this.history.count;
     var mBack, mForward, mStart, mLast, mHist;
 
-    if (typeof gContextMenu == "object") {
+    if (gContextMenu) {
       mBack = document.getElementById("context-back");
       mForward = document.getElementById("context-forward");
       mStart = document.getElementById(this.CONTEXT_ID[3]);
