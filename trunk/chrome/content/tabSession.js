@@ -21,12 +21,18 @@ var TabSession = {
     return this.prefs.getBoolPref("showMenu." + aMenu);
   },
 
-  setStatusMessage: function tabSession_setStatusMessage(aNode) {
-    document.getElementById("statusbar-display").label = aNode.statusText;
+  get statusbar() {
   },
 
-  clearStatusMessage: function tabSession_clearStatusMessage() {
-    document.getElementById("statusbar-display").label = "";
+  setStatusMessage: function tabSession_setStatusMessage(aString) {
+    var status = document.getElementById("sb-status-bar-status-label") ||
+                 document.getElementById("statusbar-display");
+
+    if (status.localName == "statusbarpanel") {
+      status.label = aString;
+    } else {
+      status.desc.value = aString;
+    }
   },
 
   getBrowser: function tabSession_getTabBrowser() {
