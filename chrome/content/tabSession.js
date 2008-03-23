@@ -61,12 +61,6 @@ var TabSession = {
     }
   },
 
-  openPrefs: function tabSession_openPrefs() {
-    openDialog("chrome://tabsession/content/options.xul",
-               "tabsession-config",
-               "chrome, dialog, centerscreen");
-  },
-
   tabBack: function tabSession_BrowserBack(aEvent, aIgnoreAlt) {
     var where = whereToOpenLink(aEvent, false, aIgnoreAlt);
     if (where == "current") {
@@ -152,7 +146,7 @@ var TabSession = {
         !this.prefs.getBoolPref("allowHidingContentBackForward")) return;
     //aNode.setAttribute("disabled", aCondition);
     aNode.setAttribute("collapsed", aCondition);
-    if ((typeof gContextMenu == "object") && (gContextMenu != null)) {
+    if (gContextMenu) {
       aNode.hidden = !this.menuShown("content" + this.MENU[aMenu]) ||
                      (this.menuShown("contentHiddenTabBarOnly") &&
                       !getBrowser().mStrip.collapsed) ||
@@ -162,13 +156,11 @@ var TabSession = {
                        gContextMenu.onTextInput);
     } else if (getBrowser().mContextTab) {
       aNode.hidden = !this.menuShown("tab" + this.MENU[aMenu]);
-    } else {
-      return;
     }
   },
 
   initContext: function tabSession_initContext(aEvent) {
-    if ((typeof gContextMenu == "object") && (gContextMenu != null)) {
+    if (gContextMenu) {
       getBrowser().mContextTab = null;
     }
     var browser = this.getBrowser();
@@ -178,7 +170,7 @@ var TabSession = {
     var count = this.history.count;
     var mBack, mForward, mStart, mLast, mHist;
 
-    if ((typeof gContextMenu == "object") && (gContextMenu != null)) {
+    if (gContextMenu) {
       mBack = document.getElementById("context-back");
       mForward = document.getElementById("context-forward");
       mStart = document.getElementById(this.CONTEXT_ID[3]);
@@ -198,8 +190,7 @@ var TabSession = {
       mLast = document.getElementById("tab" + this.CONTEXT_ID[2]);
       mHist = document.getElementById("tab" + this.CONTEXT_ID[1]);
       mHist.hidden = !this.menuShown("tab" + this.MENU[0]);
-    } else {
-      return;
+
     }
     //mHist.setAttribute("disabled", count <= 1);
     mHist.setAttribute("collapsed", count <= 1);

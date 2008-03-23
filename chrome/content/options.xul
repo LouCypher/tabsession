@@ -1,13 +1,11 @@
 <?xml version="1.0"?>
 <?xml-stylesheet href="chrome://global/skin/"?>
 
-<!DOCTYPE prefwindow [
+<!DOCTYPE overlay [
   <!ENTITY % tabSessionDTD SYSTEM "../locale/tabSession.dtd" >
   %tabSessionDTD;
   <!ENTITY % browserDTD SYSTEM "chrome://browser/locale/browser.dtd" >
   %browserDTD;
-  <!ENTITY % tabsDTD SYSTEM "chrome://browser/locale/preferences/tabs.dtd" >
-  %tabsDTD;
 ]>
 
 <prefwindow
@@ -85,22 +83,16 @@
         id="extensions.Tab_Session_History.allowHidingContentBackForward"
         name="extensions.Tab_Session_History.allowHidingContentBackForward"
         type="bool" />
-
-      <preference
-        id="browser.tabs.autoHide"
-        name="browser.tabs.autoHide"
-        type="bool" inverted="true" />
-
     </preferences>
 
     <tabbox>
       <tabs>
-        <tab id="tab-tabContext" label="&config.tab.tab.label;" />
-        <tab id="tab-mainContext" label="&config.tab.main.label;" />
+        <tab label="&config.tab.tab.label;" />
+        <tab label="&config.tab.main.label;" />
       </tabs>
 
       <tabpanels>
-        <tabpanel id="tabpanel-tabContext" orient="vertical">
+        <tabpanel orient="vertical">
           <groupbox>
             <caption label="&config.caption.label;" />
 
@@ -134,16 +126,9 @@
               accesskey="&config.popup.history.accesskey;"
               preference="extensions.Tab_Session_History.showMenu.tabHistory" />
           </groupbox>
-
-          <checkbox
-            id="browser.tabs.autoHide-check"
-            label="&showTabBar.label;"
-            accesskey="&config.hiddenTabBarOnly.accesskey;"
-            preference="browser.tabs.autoHide" />
-
         </tabpanel>
 
-        <tabpanel id="tabpanel-mainContext" orient="vertical">
+        <tabpanel orient="vertical">
           <groupbox>
             <caption label="&config.caption.label;" />
 

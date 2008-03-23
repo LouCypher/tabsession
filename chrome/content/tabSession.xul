@@ -19,14 +19,13 @@
       <menu id="context-tabSession-history"
             insertafter="context-forward"
             label="&config.popup.history.label;"
-            accesskey="&config.popup.history.accesskey;"
-            hidden="true">
+            accesskey="&config.popup.history.accesskey;">
         <menupopup
           onpopupshowing="TabSession.populateHistoryMenu(this);"
           oncommand="TabSession.gotoIndex(event);"
           onclick="checkForMiddleClick(this, event);"
           onmouseover="TabSession.setStatusMessage(event.target);"
-          onmouseout="TabSession.clearStatusMessage();" />
+          onmouseout="TabSession.clearStatusMessage();"  />
       </menu>
 
       <menuitem
@@ -38,8 +37,7 @@
         oncommand="TabSession.gotoIndex(event);"
         onclick="checkForMiddleClick(this, event);"
         onmouseover="TabSession.setStatusMessage(this);"
-        onmouseout="TabSession.clearStatusMessage();"
-        hidden="true" />
+        onmouseout="TabSession.clearStatusMessage();" />
 
       <menuitem
         id="context-tabSession-start"
@@ -50,24 +48,21 @@
         oncommand="TabSession.gotoIndex(event);"
         onclick="checkForMiddleClick(this, event);"
         onmouseover="TabSession.setStatusMessage(this);"
-        onmouseout="TabSession.clearStatusMessage();"
-        hidden="true" />
+        onmouseout="TabSession.clearStatusMessage();" />
 
       <menuitem
         id="context-forward"
         label="&forwardCmd.label;"
         accesskey="&forwardCmd.accesskey;"
         onmouseover="TabSession.setStatusMessage(this);"
-        onmouseout="TabSession.clearStatusMessage();"
-        hidden="true" />
+        onmouseout="TabSession.clearStatusMessage();" />
 
       <menuitem
         id="context-back"
         label="&backCmd.label;"
         accesskey="&backCmd.accesskey;"
         onmouseover="TabSession.setStatusMessage(this);"
-        onmouseout="TabSession.clearStatusMessage();"
-        hidden="true" />
+        onmouseout="TabSession.clearStatusMessage();" />
     </popup>
 
     <popup id="tabSession-popup">
@@ -125,13 +120,6 @@
       <menuseparator id="tabcontext-tabSession-separator-1" />
     </popup>
   </popupset>
-
-  <menupopup id="menu_ToolsPopup">
-    <menuitem
-      label="&config.title;..."
-      insertafter="menu_preferences"
-      oncommand="TabSession.openPrefs();" />
-  </menupopup>
 
 </overlay>
 

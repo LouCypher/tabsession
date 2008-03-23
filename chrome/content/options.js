@@ -1,14 +1,4 @@
 var TabSession_Config = {
-
-  get appInfo() {
-    return Components.classes["@mozilla.org/xre/app-info;1"]
-                     .getService(Components.interfaces.nsIXULAppInfo);
-  },
-
-  get isSongbird() {
-    return this.appInfo.ID == "songbird@songbirdnest.com";
-  },
-
   get prefService() {
     return Components.classes["@mozilla.org/preferences-service;1"]
                      .getService(Components.interfaces.nsIPrefService);
@@ -47,13 +37,8 @@ var TabSession_Config = {
   init: function() {
     var allowHidingContent = this.prefs.getBoolPref("allowHidingContentBackForward");
     this.disableBaFo(!allowHidingContent);
-    if (this.isSongbird) {
-      document.getElementById("tab-mainContext").parentNode.collapsed = true;
-      return;
-    }
     this.tabbox._tabs.selectedIndex = this.getLastTab();
   }
-
 }
 
 window.addEventListener("load", function(e) {

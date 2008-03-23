@@ -6,7 +6,7 @@
   <Description about="urn:mozilla:install-manifest">
     <em:id>TabSession@loucypher</em:id>
     <em:name>Tab Session History</em:name>
-    <em:version>0.4a.20080321.02</em:version>
+    <em:version>0.3.2</em:version>
     <em:description>Navigates through tabs sessions history from tab context menu and main context menu.</em:description>
     <em:creator>LouCypher</em:creator>
     <em:translator>Cashman: (hu-HU)</em:translator>
@@ -40,15 +40,6 @@
         <em:maxVersion>9.0.*</em:maxVersion>
       </Description>
     </em:targetApplication>
-
-    <!-- Songbird -->
-    <em:targetApplication>
-    <Description>
-      <em:id>songbird@songbirdnest.com</em:id>
-      <em:minVersion>0.4</em:minVersion>
-      <em:maxVersion>1.0</em:maxVersion>
-    </Description>
-   </em:targetApplication>
 
   </Description>
 </RDF>
