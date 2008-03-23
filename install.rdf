@@ -6,7 +6,7 @@
   <Description about="urn:mozilla:install-manifest">
     <em:id>TabSession@loucypher</em:id>
     <em:name>Tab Session History</em:name>
-    <em:version>0.4a.20080321.02</em:version>
+    <em:version>0.4a.20080324.01</em:version>
     <em:description>Navigates through tabs sessions history from tab context menu and main context menu.</em:description>
     <em:creator>LouCypher</em:creator>
     <em:translator>Cashman: (hu-HU)</em:translator>
