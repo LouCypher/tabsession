@@ -10,3 +10,7 @@ style     chrome://browser/content/browser.xul  chrome://tabsession/skin/tabSess
 overlay   chrome://songbird/content/feathers/basic-layouts/xul/mainplayer.xul           chrome://tabsession/content/tabSession.xul
 style     chrome://songbird/content/feathers/basic-layouts/xul/mainplayer.xul           chrome://tabsession/skin/tabSession.css
 
+# Songbird - Flyerfox feather
+overlay   chrome://flyerfox/content/mainplayer.xul      chrome://tabsession/content/tabSession.xul
+style     chrome://flyerfox/content/mainplayer.xul      chrome://tabsession/skin/tabSession.css
+
