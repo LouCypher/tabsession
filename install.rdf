@@ -11,7 +11,7 @@
     <em:creator>LouCypher</em:creator>
     <em:optionsURL>chrome://tabsession/content/options.xul</em:optionsURL>
     <em:iconURL>chrome://tabsession/skin/tabSession.png</em:iconURL>
-    <em:homepageURL>http://loucypher.wordpress.com/projects/</em:homepageURL>
+    <em:homepageURL>http://tabsession.googlecode.com/</em:homepageURL>
 
     <!-- Firefox -->
     <em:targetApplication>
