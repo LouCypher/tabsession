@@ -22,6 +22,7 @@ var TabSession = {
   },
 
   get statusbar() {
+    return document.getElementById("status-bar");
   },
 
   setStatusMessage: function tabSession_setStatusMessage(aString) {
@@ -115,7 +116,11 @@ var TabSession = {
       var mi = aNode.appendChild(document.createElement("menuitem"));
       mi.setAttribute("value", j);
       mi.setAttribute("label", hist[j].title);
-      mi.statusText = hist[j].url;
+      if (this.statusbar.hidden) {
+        mi.setAttribute("tooltiptext", hist[j].url);
+      } else {
+        mi.setAttribute("statustext", hist[j].url);
+      }
       if (j == this.history.index) {
         mi.setAttribute("type", "checkbox");
         mi.setAttribute("checked", true);
@@ -248,4 +253,3 @@ var TabSession = {
 window.addEventListener("load", function(e) {
   TabSession.init(e);
 }, false);
-
