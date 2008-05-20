@@ -6,10 +6,9 @@
   <Description about="urn:mozilla:install-manifest">
     <em:id>TabSession@loucypher</em:id>
     <em:name>Tab Session History</em:name>
-    <em:version>0.4a.20080328.01</em:version>
+    <em:version>0.4</em:version>
     <em:description>Navigates through tabs sessions history from tab context menu and main context menu.</em:description>
     <em:creator>LouCypher</em:creator>
-    <em:translator>Cashman: (hu-HU)</em:translator>
     <em:optionsURL>chrome://tabsession/content/options.xul</em:optionsURL>
     <em:iconURL>chrome://tabsession/skin/tabSession.png</em:iconURL>
     <em:homepageURL>http://loucypher.wordpress.com/projects/</em:homepageURL>
@@ -46,7 +45,7 @@
     <Description>
       <em:id>songbird@songbirdnest.com</em:id>
       <em:minVersion>0.4</em:minVersion>
-      <em:maxVersion>1.0</em:maxVersion>
+      <em:maxVersion>1.*</em:maxVersion>
     </Description>
    </em:targetApplication>
 
