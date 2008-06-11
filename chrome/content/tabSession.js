@@ -116,7 +116,7 @@ var TabSession = {
       var mi = aNode.appendChild(document.createElement("menuitem"));
       mi.setAttribute("value", j);
       mi.setAttribute("label", hist[j].title);
-      if (this.statusbar.hidden) {
+      if (this.statusbar.hidden || window.fullScreen) {
         mi.setAttribute("tooltiptext", hist[j].url);
       } else {
         mi.setAttribute("statustext", hist[j].url);
