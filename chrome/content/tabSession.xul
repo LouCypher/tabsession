@@ -77,7 +77,7 @@
         id="tabcontext-tabSession-back"
         label="&backCmd.label;"
         accesskey="&backCmd.accesskey;"
-        oncommand="TabSession.tabBack(event);"
+        oncommand="TabSession.browserBack(event);"
         onclick="checkForMiddleClick(this, event);"
         onmouseover="TabSession.setStatusMessage(this.statusText);"
         onmouseout="TabSession.setStatusMessage('');" />
@@ -86,7 +86,7 @@
         id="tabcontext-tabSession-forward"
         label="&forwardCmd.label;"
         accesskey="&forwardCmd.accesskey;"
-        oncommand="TabSession.tabForward(event);"
+        oncommand="TabSession.browserForward(event);"
         onclick="checkForMiddleClick(this, event);"
         onmouseover="TabSession.setStatusMessage(this.statusText);"
         onmouseout="TabSession.setStatusMessage('');" />
