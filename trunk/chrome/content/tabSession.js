@@ -38,10 +38,12 @@ var TabSession = {
 
   getBrowser: function tabSession_getTabBrowser() {
     return getBrowser().mContextTab
-           ? getBrowser().mContextTab.localName == "tabs"
+           ? (getBrowser().mContextTab.localName == "tabs")
              ? getBrowser().mCurrentTab.linkedBrowser
              : getBrowser().mContextTab.linkedBrowser
-           : getBrowser();
+           : (typeof SplitBrowser == "object")
+             ? SplitBrowser._mFocusedSubBrowser.browser
+             : getBrowser();
   },
 
   getHistory: function tabSession_getSessionHistory() {
@@ -74,7 +76,7 @@ var TabSession = {
                "chrome, dialog, centerscreen");
   },
 
-  tabBack: function tabSession_BrowserBack(aEvent, aIgnoreAlt) {
+  browserBack: function tabSession_browserBack(aEvent, aIgnoreAlt) {
     var where = whereToOpenLink(aEvent, false, aIgnoreAlt);
     if (where == "current") {
       try {
@@ -87,7 +89,7 @@ var TabSession = {
     }
   },
 
-  tabForward: function tabSession_BrowserBack(aEvent, aIgnoreAlt) {
+  browserForward: function tabSession_browserForward(aEvent, aIgnoreAlt) {
     var where = whereToOpenLink(aEvent, false, aIgnoreAlt);
     if (where == "current") {
       try {
@@ -160,7 +162,9 @@ var TabSession = {
     }
     aNode.statusText = aCondition ? "" : this.getEntry(aIndex).URI.spec;
     if (((aNode.id == "context-back") || (aNode.id == "context-forward")) &&
-        !this.prefs.getBoolPref("allowHidingContentBackForward")) return;
+        !this.prefs.getBoolPref("allowHidingContentBackForward")) {
+      return;
+    }
     //aNode.setAttribute("disabled", aCondition);
     aNode.setAttribute("collapsed", aCondition);
     if ((typeof gContextMenu == "object") && (gContextMenu != null)) {
