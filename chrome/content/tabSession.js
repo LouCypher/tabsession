@@ -40,8 +40,7 @@ var TabSession = {
     "context-tabSession-last",
     "context-tabSession-start",
     "context-tabSession-forward",
-    "context-tabSession-back",
-    "context-tabSession-separator-0"
+    "context-tabSession-back"
   ],
 
   MENU: ["History", "Last", "Start", "Forward", "Back"],

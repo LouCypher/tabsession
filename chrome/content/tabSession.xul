@@ -51,6 +51,10 @@
 
   <popupset id="mainPopupSet">
     <popup id="contentAreaContextMenu">
+      <menuseparator
+        id="tabcontext-tabSession-separator-0"
+        insertafter="context-forward" />
+
       <menu id="context-tabSession-history"
             insertafter="context-forward"
             label="&config.popup.history.label;"
@@ -103,10 +107,10 @@
         onmouseover="TabSession.setStatusMessage(this.statusText);"
         onmouseout="TabSession.setStatusMessage('');"
         hidden="true" />
+
     </popup>
 
     <popup id="tabSession-popup">
-      <menuseparator id="tabcontext-tabSession-separator-0" />
 
       <menuitem
         id="tabcontext-tabSession-back"

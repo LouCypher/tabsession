@@ -6,7 +6,7 @@
   <Description about="urn:mozilla:install-manifest">
     <em:id>TabSession@loucypher</em:id>
     <em:name>Tab Session History</em:name>
-    <em:version>0.4.1</em:version>
+    <em:version>0.4.2</em:version>
     <em:description>Navigates through tabs sessions history from tab context menu and main context menu.</em:description>
     <em:creator>LouCypher</em:creator>
     <em:optionsURL>chrome://tabsession/content/options.xul</em:optionsURL>
