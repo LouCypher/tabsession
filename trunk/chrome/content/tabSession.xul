@@ -168,7 +168,7 @@
   <menupopup id="menu_ToolsPopup">
     <menuitem
       label="&config.title;..."
-      insertafter="menu_preferences"
+      insertbefore="menu_preferences"
       oncommand="TabSession.openPrefs();" />
   </menupopup>
 
