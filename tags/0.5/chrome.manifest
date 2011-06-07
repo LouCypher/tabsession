@@ -1,0 +1,7 @@
+content   contexthistory                    chrome/content/
+skin      contexthistory    classic/1.0     chrome/skin/classic/
+locale    contexthistory    en-US           chrome/locale/en-US/
+
+overlay   chrome://browser/content/browser.xul  chrome://contexthistory/content/tabSession.xul
+style     chrome://browser/content/browser.xul  chrome://contexthistory/skin/tabSession.css
+
