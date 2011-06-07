@@ -1,7 +1,0 @@
-content   tabsession                    chrome/content/
-skin      tabsession    classic/1.0     chrome/skin/classic/
-locale    tabsession    en-US           chrome/locale/en-US/
-
-overlay   chrome://browser/content/browser.xul  chrome://tabsession/content/tabSession.xul
-style     chrome://browser/content/browser.xul  chrome://tabsession/skin/tabSession.css
-
