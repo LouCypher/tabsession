@@ -6,31 +6,19 @@
   <Description about="urn:mozilla:install-manifest">
     <em:id>TabSession@loucypher</em:id>
     <em:name>Tab Session History</em:name>
-    <em:version>0.4.2</em:version>
+    <em:version>0.4.3</em:version>
     <em:description>Navigates through tabs sessions history from tab context menu and main context menu.</em:description>
     <em:creator>LouCypher</em:creator>
     <em:optionsURL>chrome://tabsession/content/options.xul</em:optionsURL>
     <em:iconURL>chrome://tabsession/skin/tabSession.png</em:iconURL>
     <em:homepageURL>http://tabsession.googlecode.com/</em:homepageURL>
-
-    <!-- Firefox -->
     <em:targetApplication>
       <Description>
         <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
-        <em:minVersion>2.0</em:minVersion>
-        <em:maxVersion>3.6a1</em:maxVersion>
+        <em:minVersion>3.0</em:minVersion>
+        <em:maxVersion>3.6.*</em:maxVersion>
       </Description>
     </em:targetApplication>
-
-    <!-- Flock -->
-    <em:targetApplication>
-      <Description>
-        <em:id>{a463f10c-3994-11da-9945-000d60ca027b}</em:id>
-        <em:minVersion>2.0</em:minVersion>
-        <em:maxVersion>2.*</em:maxVersion>
-      </Description>
-    </em:targetApplication>
-
   </Description>
 </RDF>
 

@@ -11,7 +11,7 @@
   for the specific language governing rights and limitations under the
   License.
 
-  The Original Code is Tab Seesion History extension.
+  The Original Code is Tab Session History extension.
 
   The Initial Developer of the Original Code is LouCypher.
   Portions created by the Initial Developer are Copyright (C) 2007
@@ -32,6 +32,10 @@
   the provisions above, a recipient may use your version of this file under
   the terms of any one of the MPL, the GPL or the LGPL.
 */
+
+function $(aId) {
+  return document.getElementById(aId);
+}
 
 var TabSession_Config = {
 
@@ -62,8 +66,7 @@ var TabSession_Config = {
               "extensions.Tab_Session_History.showMenu.contentForward-check"];
     var checkbox;
     for (var i in id) {
-      checkbox = document.getElementById(id[i]);
-      checkbox.disabled = aBoolean;
+      $(id[i]).disabled = aBoolean;
     }
   },
 
@@ -79,16 +82,27 @@ var TabSession_Config = {
     }
   },
 
+  checkTMP: function() {
+    var exts = Application.extensions.all;
+    for (var i = 0; i < exts.length; i++) {
+      if (exts[i].id == "{dc572301-7619-498c-a57d-39143191b318}") {
+        return exts[i].enabled;
+      }
+    }
+    return false;
+  },
+
+  toggleHide: function() {
+    $("browser.tabs.autoHide-check").hidden = this.checkTMP();
+    $("tabmixplus").hidden = !this.checkTMP();
+  },
+
   init: function() {
     var allowHidingContent = this.prefs.getBoolPref("allowHidingContentBackForward");
     this.disableBaFo(!allowHidingContent);
-    if (this.isSongbird) {
-      document.getElementById("tab-mainContext").parentNode.collapsed = true;
-      return;
-    }
     this.tabbox._tabs.selectedIndex = this.getLastTab();
+    this.toggleHide();
   }
-
 }
 
 window.addEventListener("load", function(e) {
