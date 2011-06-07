@@ -12,7 +12,7 @@
   for the specific language governing rights and limitations under the
   License.
 
-  The Original Code is Tab Seesion History extension.
+  The Original Code is Tab Session History extension.
 
   The Initial Developer of the Original Code is LouCypher.
   Portions created by the Initial Developer are Copyright (C) 2007
@@ -48,12 +48,13 @@
 <prefwindow
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
   id="tabSession-config"
-	title="&config.title;">
+  title="&config.title;">
 
   <prefpane
     id="prefpane-menu"
     label="&config.prefPane.label;"
-    accesskey="&config.prefPane.accesskey;">
+    accesskey="&config.prefPane.accesskey;"
+    flex="1">
 
     <preferences>
       <preference
@@ -126,6 +127,11 @@
         name="browser.tabs.autoHide"
         type="bool" inverted="true" />
 
+      <preference
+        id="extensions.tabmix.hideTabbar"
+        name="extensions.tabmix.hideTabbar"
+        type="int" />
+
     </preferences>
 
     <tabbox>
@@ -175,6 +181,22 @@
             label="&showTabBar.label;"
             accesskey="&config.hiddenTabBarOnly.accesskey;"
             preference="browser.tabs.autoHide" />
+
+          <groupbox align="start" id="tabmixplus">
+            <caption label="&hideTabBar.label;:" />
+            <radiogroup id="_hideTabbar" orient="horizontal"
+                        preference="extensions.tabmix.hideTabbar">
+              <radio value="0"
+                     label="&hideTabBar.never.label;"
+                     accesskey="&hideTabBar.never.key;" />
+              <radio value="1"
+                     label="&hideTabBar.onOneTab.label;"
+                     accesskey="&hideTabBar.onOneTab.key;" />
+              <radio value="2"
+                     label="&hideTabBar.always.label;"
+                     accesskey="&hideTabBar.always.key;" />
+            </radiogroup>
+          </groupbox>
 
         </tabpanel>
 

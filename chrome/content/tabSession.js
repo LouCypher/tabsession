@@ -11,7 +11,7 @@
   for the specific language governing rights and limitations under the
   License.
 
-  The Original Code is Tab Seesion History extension.
+  The Original Code is Tab Session History extension.
 
   The Initial Developer of the Original Code is LouCypher.
   Portions created by the Initial Developer are Copyright (C) 2007
