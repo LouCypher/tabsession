@@ -60,7 +60,14 @@ var TabSession = {
   },
 
   setStatusMessage: function tabSession_setStatusMessage(aString) {
-    document.getElementById("statusbar-display").label = aString;
+    var status = document.getElementById("sb-status-bar-status-label") ||
+                 document.getElementById("statusbar-display");
+
+    if (status.localName == "statusbarpanel") {
+      status.label = aString;
+    } else {
+      status.desc.value = aString;
+    }
   },
 
   getBrowser: function tabSession_getTabBrowser() {
@@ -98,7 +105,7 @@ var TabSession = {
   },
 
   openPrefs: function tabSession_openPrefs() {
-    openDialog("chrome://contexthistory/content/options.xul",
+    openDialog("chrome://tabsession/content/options.xul",
                "tabsession-config",
                "chrome, dialog, centerscreen");
   },
@@ -145,7 +152,11 @@ var TabSession = {
       var mi = aNode.appendChild(document.createElement("menuitem"));
       mi.setAttribute("value", j);
       mi.setAttribute("label", hist[j].title);
-      mi.setAttribute("statustext", hist[j].url);
+      if (this.statusbar.hidden || window.fullScreen) {
+        mi.setAttribute("tooltiptext", hist[j].url);
+      } else {
+        mi.setAttribute("statustext", hist[j].url);
+      }
       if (j == this.history.index) {
         mi.setAttribute("type", "checkbox");
         mi.setAttribute("checked", true);
@@ -209,7 +220,6 @@ var TabSession = {
     if ((typeof gContextMenu == "object") && (gContextMenu != null)) {
       getBrowser().mContextTab = null;
     }
-
     var browser = this.getBrowser();
     var canGoBack = browser.webNavigation.canGoBack;
     var canGoForward = browser.webNavigation.canGoForward;
@@ -251,16 +261,23 @@ var TabSession = {
 
   init: function tabSession_init(aEvent) {
     var context = document.getElementById("contentAreaContextMenu");
-    context.addEventListener("popupshowing", initMainContext = function(e) {
-      TabSession.initContext(e);
-    }, false);
-    context.removeEventListener("popuphiding", initMainContext, false);
+    var tabContext = document.getAnonymousElementByAttribute(
+                      gBrowser, "anonid", "tabContextMenu");
+    var sep = tabContext.getElementsByTagName("xul:menuseparator")[0] ||
+              tabContext.getElementsByTagName("menuseparator")[0];
+    var mID = this.CONTEXT_ID;
+    for (var i in mID) {
+      var mi = document.getElementById("tab" + mID[i]);
+      tabContext.insertBefore(mi, sep.nextSibling);
+    }
 
-    var tabContext = document.getElementById("tabContextMenu");
-    tabContext.addEventListener("popupshowing", initTabContext = function(e) {
+    context.addEventListener("popupshowing", function(e) {
       TabSession.initContext(e);
     }, false);
-    tabContext.removeEventListener("popuphiding", initTabContext, false);
+
+    tabContext.addEventListener("popupshowing", function(e) {
+      TabSession.initContext(e);
+    }, false);
 
     // fix tab tooltips bug
     if (typeof gBrowser.createTooltip != "function") {
@@ -271,9 +288,6 @@ var TabSession = {
   }
 }
 
-window.addEventListener("load", initContextHistory = function(e) {
+window.addEventListener("load", function(e) {
   TabSession.init(e);
 }, false);
-
-window.removeEventListener("unload", initContextHistory, false);
-

@@ -37,7 +37,7 @@ function $(aId) {
   return document.getElementById(aId);
 }
 
-({
+var TabSession_Config = {
 
   get appInfo() {
     return Components.classes["@mozilla.org/xre/app-info;1"]
@@ -82,29 +82,34 @@ function $(aId) {
     }
   },
 
-  checkTMP: function(aCallback) {
-    Components.utils.import("resource://gre/modules/AddonManager.jsm");
-    AddonManager.getAddonByID("{dc572301-7619-498c-a57d-39143191b318}",
-      function(aObject) {
-        try {
-          aCallback(aObject.isActive);
-        } catch(ex) {
-          aCallback(false);
-        }
+  checkTMP: function() {
+    var exts = Application.extensions.all;
+    for (var i = 0; i < exts.length; i++) {
+      if (exts[i].id == "{dc572301-7619-498c-a57d-39143191b318}") {
+        return exts[i].enabled;
       }
-    )
+    }
+    return false;
   },
 
-  toggleHide: function(aTMPstatus) {
-    $("browser.tabs.autoHide-check").hidden = aTMPstatus;
-    $("tabmixplus").hidden = !aTMPstatus;
+  toggleHide: function() {
+    $("browser.tabs.autoHide-check").hidden = this.checkTMP();
+    $("tabmixplus").hidden = !this.checkTMP();
   },
 
   init: function() {
     var allowHidingContent = this.prefs.getBoolPref("allowHidingContentBackForward");
     this.disableBaFo(!allowHidingContent);
     this.tabbox._tabs.selectedIndex = this.getLastTab();
-    this.checkTMP(this.toggleHide);
+    this.toggleHide();
   }
+}
 
-}).init()
+window.addEventListener("load", function(e) {
+  TabSession_Config.init();
+}, false);
+
+window.addEventListener("unload", function(e) {
+  TabSession_Config.setLastTab();
+}, false);
+

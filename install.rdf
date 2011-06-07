@@ -5,20 +5,18 @@
 
   <Description about="urn:mozilla:install-manifest">
     <em:id>TabSession@loucypher</em:id>
-    <em:type>2</em:type>
-    <em:unpack>true</em:unpack>
-    <em:name>Context History</em:name>
-    <em:version>0.5</em:version>
-    <em:description>Navigates through history from main context menu and tab context menu.</em:description>
+    <em:name>Tab Session History</em:name>
+    <em:version>0.4.3</em:version>
+    <em:description>Navigates through tabs sessions history from tab context menu and main context menu.</em:description>
     <em:creator>LouCypher</em:creator>
-    <em:optionsURL>chrome://contexthistory/content/options.xul</em:optionsURL>
-    <em:iconURL>chrome://contexthistory/skin/tabSession.png</em:iconURL>
+    <em:optionsURL>chrome://tabsession/content/options.xul</em:optionsURL>
+    <em:iconURL>chrome://tabsession/skin/tabSession.png</em:iconURL>
     <em:homepageURL>http://tabsession.googlecode.com/</em:homepageURL>
     <em:targetApplication>
       <Description>
         <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
-        <em:minVersion>4.0</em:minVersion>
-        <em:maxVersion>6.0a2</em:maxVersion>
+        <em:minVersion>3.0</em:minVersion>
+        <em:maxVersion>3.6.*</em:maxVersion>
       </Description>
     </em:targetApplication>
   </Description>
