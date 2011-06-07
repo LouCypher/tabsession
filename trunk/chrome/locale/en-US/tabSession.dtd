@@ -7,7 +7,7 @@
 <!ENTITY context.tabLast.label                        "Go to Last Page">
 <!ENTITY context.tabLast.accesskey                    "L">
 
-<!ENTITY config.title                                 "Tab Session History Options">
+<!ENTITY config.title                                 "Context History Options">
 <!ENTITY config.prefPane.label                        "Menu">
 <!ENTITY config.prefPane.accesskey                    "M">
 
