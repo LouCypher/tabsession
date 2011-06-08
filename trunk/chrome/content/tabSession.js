@@ -261,13 +261,6 @@ var TabSession = {
       TabSession.initContext(e);
     }, false);
     tabContext.removeEventListener("popuphiding", initTabContext, false);
-
-    // fix tab tooltips bug
-    if (typeof gBrowser.createTooltip != "function") {
-      var tabTooltip = tabContext.parentNode.firstChild;
-      tabTooltip.setAttribute("onpopupshowing",
-                              "return TabSession.createTooltip(event);");
-    }
   }
 }
 
