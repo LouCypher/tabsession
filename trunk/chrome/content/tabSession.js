@@ -164,19 +164,6 @@ var TabSession = {
     }
   },
 
-  createTooltip: function tabSession_fixTabTooltip(aEvent) {
-    aEvent.stopPropagation();
-    var tn = document.tooltipNode;
-    if (tn.localName != "tab") {
-      return false;
-    }
-    if (tn.hasAttribute("label")) {
-      aEvent.target.setAttribute("label", tn.getAttribute("label"));
-      return true;
-    }
-    return false;
-  },
-
   setItemAttributes: function tabSession_setItemAttr(aNode, aMenu, aCondition, aIndex) {
     if (aCondition) {
       aNode.removeAttribute("tooltiptext");
