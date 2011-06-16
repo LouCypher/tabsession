@@ -100,7 +100,7 @@ var TabSession = {
   openPrefs: function tabSession_openPrefs() {
     openDialog("chrome://contexthistory/content/options.xul",
                "tabsession-config",
-               "chrome, dialog, centerscreen");
+               "chrome, dialog, close, centerscreen");
   },
 
   browserBack: function tabSession_browserBack(aEvent, aIgnoreAlt) {
@@ -147,7 +147,7 @@ var TabSession = {
       mi.setAttribute("label", hist[j].title);
       mi.setAttribute("statustext", hist[j].url);
       if (j == this.history.index) {
-        mi.setAttribute("type", "checkbox");
+        mi.setAttribute("type", "radio");
         mi.setAttribute("checked", true);
       } else {
         try {
@@ -159,7 +159,8 @@ var TabSession = {
           mi.style.listStyleImage = "url(chrome://global/skin/icons/folder-item.png)";
           mi.style.MozImageRegion = "rect(0px, 16px, 16px, 0px)";
         }
-        mi.className = "menuitem-iconic";
+        mi.className = "menuitem-iconic unified-nav-";
+        mi.className += (j < this.history.index) ? "back" : "forward";
       }
     }
   },
