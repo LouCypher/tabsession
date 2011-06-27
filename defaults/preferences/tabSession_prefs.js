@@ -1,6 +1,6 @@
 pref("extensions.Tab_Session_History@loucypher.description", "chrome://contexthistory/locale/tabSession.properties");
 
-pref("extensions.Tab_Session_History.showMenu.contentHiddenTabBarOnly", true);
+pref("extensions.Tab_Session_History.showMenu.contentHiddenTabBarOnly", false);
 
 pref("extensions.Tab_Session_History.showMenu.contentBack", true);
 pref("extensions.Tab_Session_History.showMenu.contentForward", true);
