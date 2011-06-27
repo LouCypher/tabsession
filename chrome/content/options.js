@@ -37,15 +37,11 @@ function $(aId) {
   return document.getElementById(aId);
 }
 
-({
+var TabSession_Config = {
 
   get appInfo() {
     return Components.classes["@mozilla.org/xre/app-info;1"]
                      .getService(Components.interfaces.nsIXULAppInfo);
-  },
-
-  get isSongbird() {
-    return this.appInfo.ID == "songbird@songbirdnest.com";
   },
 
   get prefService() {
@@ -64,7 +60,6 @@ function $(aId) {
   disableBaFo: function(aBoolean) {
     var id = ["extensions.Tab_Session_History.showMenu.contentBack-check",
               "extensions.Tab_Session_History.showMenu.contentForward-check"];
-    var checkbox;
     for (var i in id) {
       $(id[i]).disabled = aBoolean;
     }
@@ -107,4 +102,13 @@ function $(aId) {
     this.checkTMP(this.toggleHide);
   }
 
-}).init()
+}
+
+window.addEventListener("load", function(e) {
+  TabSession_Config.init();
+}, false);
+
+window.addEventListener("unload", function(e) {
+  TabSession_Config.setLastTab();
+}, false);
+
