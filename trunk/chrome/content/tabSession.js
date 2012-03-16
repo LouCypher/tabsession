@@ -35,7 +35,7 @@
 
 var TabSession = {
   CONTEXT_ID: [
-    "context-tabSession-separator-1",
+    "context-tabSession-separator",
     "context-tabSession-history",
     "context-tabSession-last",
     "context-tabSession-start",

@@ -46,12 +46,12 @@
 <overlay id="contextHistory-browserOverlay"
          xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
-  <script type="application/x-javascript" src="tabSession.js" />
+  <script type="application/x-javascript" src="tabSession.js"/>
 
   <menupopup id="contentAreaContextMenu">
     <menuseparator
-      id="tabcontext-tabSession-separator-0"
-      insertafter="context-forward" />
+      id="context-tabSession-separator"
+      insertafter="context-forward"/>
 
     <menu id="context-tabSession-history"
           insertafter="context-forward"
@@ -63,7 +63,7 @@
         oncommand="TabSession.gotoIndex(event);"
         onclick="checkForMiddleClick(this, event);"
         onmouseover="TabSession.setStatusMessage(event.target.statusText);"
-        onmouseout="TabSession.setStatusMessage('');" />
+        onmouseout="TabSession.setStatusMessage('');"/>
     </menu>
 
     <menuitem
@@ -76,7 +76,7 @@
       onclick="checkForMiddleClick(this, event);"
       onmouseover="TabSession.setStatusMessage(this.statusText);"
       onmouseout="TabSession.setStatusMessage('');"
-      hidden="true" />
+      hidden="true"/>
 
     <menuitem
       id="context-tabSession-start"
@@ -88,7 +88,7 @@
       onclick="checkForMiddleClick(this, event);"
       onmouseover="TabSession.setStatusMessage(this.statusText);"
       onmouseout="TabSession.setStatusMessage('');"
-      hidden="true" />
+      hidden="true"/>
 
     <menuitem
       id="context-forward"
@@ -96,7 +96,7 @@
       accesskey="&forwardCmd.accesskey;"
       onmouseover="TabSession.setStatusMessage(this.statusText);"
       onmouseout="TabSession.setStatusMessage('');"
-      hidden="true" />
+      hidden="true"/>
 
     <menuitem
       id="context-back"
@@ -104,60 +104,68 @@
       accesskey="&backCmd.accesskey;"
       onmouseover="TabSession.setStatusMessage(this.statusText);"
       onmouseout="TabSession.setStatusMessage('');"
-      hidden="true" />
+      hidden="true"/>
   </menupopup>
 
   <menupopup id="tabContextMenu">
+
+    <menuseparator id="tabcontext-tabSession-separator"
+                   insertbefore="context_reloadTab"/>
+
     <menuitem
       id="tabcontext-tabSession-back"
       label="&backCmd.label;"
       accesskey="&backCmd.accesskey;"
+      insertbefore="tabcontext-tabSession-separator"
       oncommand="TabSession.browserBack(event);"
       onclick="checkForMiddleClick(this, event);"
       onmouseover="TabSession.setStatusMessage(this.statusText);"
-      onmouseout="TabSession.setStatusMessage('');" />
+      onmouseout="TabSession.setStatusMessage('');"/>
 
     <menuitem
       id="tabcontext-tabSession-forward"
       label="&forwardCmd.label;"
       accesskey="&forwardCmd.accesskey;"
+      insertbefore="tabcontext-tabSession-separator"
       oncommand="TabSession.browserForward(event);"
       onclick="checkForMiddleClick(this, event);"
       onmouseover="TabSession.setStatusMessage(this.statusText);"
-      onmouseout="TabSession.setStatusMessage('');" />
+      onmouseout="TabSession.setStatusMessage('');"/>
 
     <menuitem
       id="tabcontext-tabSession-start"
       value="0"
       label="&context.tabStart.label;"
       accesskey="&context.tabStart.accesskey;"
+      insertbefore="tabcontext-tabSession-separator"
       oncommand="TabSession.gotoIndex(event);"
       onclick="checkForMiddleClick(this, event);"
       onmouseover="TabSession.setStatusMessage(this.statusText);"
-      onmouseout="TabSession.setStatusMessage('');" />
+      onmouseout="TabSession.setStatusMessage('');"/>
 
     <menuitem
       id="tabcontext-tabSession-last"
       value="1"
       label="&context.tabLast.label;"
       accesskey="&context.tabLast.accesskey;"
+      insertbefore="tabcontext-tabSession-separator"
       oncommand="TabSession.gotoIndex(event);"
       onclick="checkForMiddleClick(this, event);"
       onmouseover="TabSession.setStatusMessage(this.statusText);"
-      onmouseout="TabSession.setStatusMessage('');" />
+      onmouseout="TabSession.setStatusMessage('');"/>
 
     <menu id="tabcontext-tabSession-history"
           label="&config.popup.history.label;"
-          accesskey="&config.popup.history.accesskey;">
+          accesskey="&config.popup.history.accesskey;"
+          insertbefore="tabcontext-tabSession-separator">
       <menupopup
         onpopupshowing="TabSession.populateHistoryMenu(this);"
         oncommand="TabSession.gotoIndex(event);"
         onclick="checkForMiddleClick(this, event);"
         onmouseover="TabSession.setStatusMessage(event.target.statusText);"
-        onmouseout="TabSession.setStatusMessage('');"  />
+        onmouseout="TabSession.setStatusMessage('');" />
     </menu>
 
-    <menuseparator id="tabcontext-tabSession-separator-1" />
   </menupopup>
 
   <menupopup id="menu_ToolsPopup">
@@ -165,7 +173,7 @@
       id="toolsmenu-contexthistory-config"
       insertbefore="menu_preferences"
       label="&config.title;..."
-      oncommand="TabSession.openPrefs();" />
+      oncommand="TabSession.openPrefs();"/>
   </menupopup>
 
   <menupopup id="appmenu_customizeMenu">
@@ -173,7 +181,7 @@
       id="appmenu-contexthistory-config"
       insertafter="appmenu_preferences"
       label="&config.title;"
-      oncommand="event.stopPropagation(); TabSession.openPrefs();" />
+      oncommand="event.stopPropagation(); TabSession.openPrefs();"/>
   </menupopup>
 
 </overlay>
