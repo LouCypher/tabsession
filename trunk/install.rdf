@@ -8,7 +8,7 @@
     <em:type>2</em:type>
     <em:unpack>true</em:unpack>
     <em:name>Context History</em:name>
-    <em:version>0.5.6</em:version>
+    <em:version>0.5.6.20120317.01</em:version>
     <em:description>Navigates through history from main context menu and tab context menu.</em:description>
     <em:creator>LouCypher</em:creator>
     <em:optionsURL>chrome://contexthistory/content/options.xul</em:optionsURL>
@@ -18,7 +18,7 @@
       <Description>
         <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
         <em:minVersion>4.0</em:minVersion>
-        <em:maxVersion>11.*</em:maxVersion>
+        <em:maxVersion>12.*</em:maxVersion>
       </Description>
     </em:targetApplication>
   </Description>
