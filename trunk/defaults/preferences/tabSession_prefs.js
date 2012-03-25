@@ -15,4 +15,3 @@ pref("extensions.Tab_Session_History.showMenu.tabLast", true);
 pref("extensions.Tab_Session_History.showMenu.tabHistory", true);
 
 pref("extensions.Tab_Session_History.allowHidingContentBackForward", false);
-

@@ -257,4 +257,3 @@ window.addEventListener("load", initContextHistory = function(e) {
 }, false);
 
 window.removeEventListener("unload", initContextHistory, false);
-
