@@ -111,4 +111,3 @@ window.addEventListener("load", function(e) {
 window.addEventListener("unload", function(e) {
   TabSession_Config.setLastTab();
 }, false);
-
