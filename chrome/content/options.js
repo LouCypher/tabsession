@@ -4,14 +4,14 @@
   The contents of this file are subject to the Mozilla Public License
   Version 1.1 (the "License"); you may not use this file except in
   compliance with the License. You may obtain a copy of the License at
-  http://www.mozilla.org/MPL/
+  http://www.mozilla.org/MPL/1.1/
 
   Software distributed under the License is distributed on an "AS IS" basis,
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the
   License.
 
-  The Original Code is Tab Session History extension.
+  The Original Code is Tab Session History or Context History extension.
 
   The Initial Developer of the Original Code is LouCypher.
   Portions created by the Initial Developer are Copyright (C) 2007
@@ -33,81 +33,60 @@
   the terms of any one of the MPL, the GPL or the LGPL.
 */
 
+Components.utils.import("resource://gre/modules/AddonManager.jsm");
+Components.utils.import("resource://gre/modules/Services.jsm");
+
 function $(aId) {
   return document.getElementById(aId);
 }
 
-var TabSession_Config = {
+var prefs = Services.prefs.getBranch("extensions.Context_History.");
+var tabbox = document.getElementsByTagName("tabbox")[0];
 
-  get appInfo() {
-    return Components.classes["@mozilla.org/xre/app-info;1"]
-                     .getService(Components.interfaces.nsIXULAppInfo);
-  },
-
-  get prefService() {
-    return Components.classes["@mozilla.org/preferences-service;1"]
-                     .getService(Components.interfaces.nsIPrefService);
-  },
-
-  get prefs() {
-    return this.prefService.getBranch("extensions.Tab_Session_History.");
-  },
-
-  get tabbox() {
-    return document.getElementsByTagName("tabbox")[0];
-  },
-
-  disableBaFo: function(aBoolean) {
-    var id = ["extensions.Tab_Session_History.showMenu.contentBack-check",
-              "extensions.Tab_Session_History.showMenu.contentForward-check"];
-    for (var i in id) {
-      $(id[i]).disabled = aBoolean;
-    }
-  },
-
-  setLastTab: function() {
-    this.prefs.setIntPref("options.lastTab", this.tabbox._tabs.selectedIndex);
-  },
-
-  getLastTab: function() {
-    try {
-      return this.prefs.getIntPref("options.lastTab");
-    } catch(ex) {
-      return 0;
-    }
-  },
-
-  checkTMP: function(aCallback) {
-    Components.utils.import("resource://gre/modules/AddonManager.jsm");
-    AddonManager.getAddonByID("{dc572301-7619-498c-a57d-39143191b318}",
-      function(aObject) {
-        try {
-          aCallback(aObject.isActive);
-        } catch(ex) {
-          aCallback(false);
-        }
-      }
-    )
-  },
-
-  toggleHide: function(aTMPstatus) {
-    $("browser.tabs.autoHide-check").hidden = aTMPstatus;
-    $("tabmixplus").hidden = !aTMPstatus;
-  },
-
-  init: function() {
-    var allowHidingContent = this.prefs.getBoolPref("allowHidingContentBackForward");
-    this.disableBaFo(!allowHidingContent);
-    this.tabbox._tabs.selectedIndex = this.getLastTab();
-    this.checkTMP(this.toggleHide);
+function disableBaFo(aBoolean) {
+  var id = ["extensions.Context_History.showMenu.contentBack-check",
+            "extensions.Context_History.showMenu.contentForward-check"];
+  for (var i in id) {
+    $(id[i]).disabled = aBoolean;
   }
-
 }
 
-window.addEventListener("load", function(e) {
-  TabSession_Config.init();
-}, false);
+function setLastTab() {
+  prefs.setIntPref("options.lastTab", tabbox._tabs.selectedIndex);
+}
 
-window.addEventListener("unload", function(e) {
-  TabSession_Config.setLastTab();
-}, false);
+function getLastTab() {
+  try {
+    return prefs.getIntPref("options.lastTab");
+  } catch(ex) {
+    return 0;
+  }
+}
+
+function checkTMP(aCallback) {
+  AddonManager.getAddonByID("{dc572301-7619-498c-a57d-39143191b318}",
+    function(aObject) {
+      try {
+        aCallback(aObject.isActive);
+      } catch(ex) {
+        aCallback(false);
+      }
+    }
+  )
+}
+
+function toggleHide(aTMPstatus) {
+  $("browser.tabs.autoHide-check").hidden = aTMPstatus;
+  $("tabmixplus").hidden = !aTMPstatus;
+}
+
+function onLoad() {
+  var allowHidingContent = prefs.getBoolPref("allowHidingContentBackForward");
+  disableBaFo(!allowHidingContent);
+  tabbox._tabs.selectedIndex = getLastTab();
+  checkTMP(toggleHide);
+}
+
+window.addEventListener("unload", setLastTab, false);
+window.addEventListener("load", onLoad, false);
+window.removeEventListener("unload", onLoad, false);
