@@ -1,0 +1,16 @@
+[collapsed="true"]:not([id^="tabcontext-contexthistory-history"]) + [id^="tabcontext-contexthistory-separator"],
+[hidden="true"]:not([id^="tabcontext-contexthistory-history"]) + [id^="tabcontext-contexthistory-separator"],
+[id^="tabcontext-contexthistory-separator"]:first-child {
+  display: none;
+}
+
+#context-contexthistory-history [checked="true"],
+#tabcontext-contexthistory-history [checked="true"] {
+  list-style-image: url("chrome://global/skin/menu/menu-radio.gif");
+  font-weight: bold;
+}
+
+#toolsmenu-contexthistory-config,
+#appmenu-contexthistory-config {
+  list-style-image: url("chrome://contexthistory/skin/contexthistory.png");
+}

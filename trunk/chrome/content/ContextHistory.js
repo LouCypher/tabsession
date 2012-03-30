@@ -4,14 +4,14 @@
   The contents of this file are subject to the Mozilla Public License
   Version 1.1 (the "License"); you may not use this file except in
   compliance with the License. You may obtain a copy of the License at
-  http://www.mozilla.org/MPL/
+  http://www.mozilla.org/MPL/1.1/
 
   Software distributed under the License is distributed on an "AS IS" basis,
   WITHOUT WARRANTY OF ANY KIND, either express or implied. See the License
   for the specific language governing rights and limitations under the
   License.
 
-  The Original Code is Tab Session History extension.
+  The Original Code is Tab Session History or Context History extension.
 
   The Initial Developer of the Original Code is LouCypher.
   Portions created by the Initial Developer are Copyright (C) 2007
@@ -33,81 +33,76 @@
   the terms of any one of the MPL, the GPL or the LGPL.
 */
 
-var TabSession = {
+var ContextHistory = {
   CONTEXT_ID: [
-    "context-tabSession-separator",
-    "context-tabSession-history",
-    "context-tabSession-last",
-    "context-tabSession-start",
-    "context-tabSession-forward",
-    "context-tabSession-back"
+    "context-contexthistory-separator",
+    "context-contexthistory-history",
+    "context-contexthistory-last",
+    "context-contexthistory-start",
+    "context-contexthistory-forward",
+    "context-contexthistory-back"
   ],
 
   MENU: ["History", "Last", "Start", "Forward", "Back"],
 
   get prefs() {
-    return Components.classes["@mozilla.org/preferences-service;1"]
-                     .getService(Components.interfaces.nsIPrefBranch)
-                     .getBranch("extensions.Tab_Session_History.");
+    return Services.prefs.getBranch("extensions.Context_History.");
   },
 
-  menuShown: function tabSession_getMenuPrefs(aMenu) {
+  get oldPrefs() {
+    return Services.prefs.getBranch("extensions.Tab_Session_History.");
+  },
+
+  menuShown: function contextHistory_getMenuPrefs(aMenu) {
     return this.prefs.getBoolPref("showMenu." + aMenu);
   },
 
-  get statusbar() {
-    return document.getElementById("status-bar");
-  },
-
-  setStatusMessage: function tabSession_setStatusMessage(aString) {
+  // Used in menuitems to display the URL on statusbar
+  setStatusMessage: function contextHistory_setStatusMessage(aString) {
     document.getElementById("statusbar-display").label = aString;
   },
 
-  getBrowser: function tabSession_getTabBrowser() {
-    return getBrowser().mContextTab
-           ? (getBrowser().mContextTab.localName == "tabs")
-             ? getBrowser().mCurrentTab.linkedBrowser
-             : getBrowser().mContextTab.linkedBrowser
+  // Browser in tab
+  get tabBrowser() {
+    return gBrowser.mContextTab
+           ? (gBrowser.mContextTab.localName == "tabs")
+             ? gBrowser.mCurrentTab.linkedBrowser
+             : gBrowser.mContextTab.linkedBrowser
            : (typeof SplitBrowser == "object")
              ? SplitBrowser._mFocusedSubBrowser.browser
-             : getBrowser();
-  },
-
-  getHistory: function tabSession_getSessionHistory() {
-    return this.getBrowser().webNavigation.sessionHistory;
+             : gBrowser;
   },
 
   get history() {
-    return this.getBrowser().webNavigation.sessionHistory;
+    return this.tabBrowser.webNavigation.sessionHistory;
   },
 
-  getEntry: function tabSession_getHistoryEntry(aIndex) {
+  getEntry: function contextHistory_getHistoryEntry(aIndex) {
     return this.history.getEntryAtIndex(aIndex, false);
   },
 
-  gotoIndex: function tabSession_gotoIndex(aEvent) {
+  gotoIndex: function contextHistory_gotoIndex(aEvent) {
     var index = aEvent.target.value;
     if (!index) return;
     var where = whereToOpenLink(aEvent);
     if (where == "current") {
-      return this.getBrowser().webNavigation.gotoIndex(index);
+      return this.tabBrowser.webNavigation.gotoIndex(index);
     } else {
       var url = this.getEntry(index).URI.spec;
       openUILinkIn(url, where, false);
     }
   },
 
-  openPrefs: function tabSession_openPrefs() {
-    openDialog("chrome://contexthistory/content/options.xul",
-               "tabsession-config",
+  openPrefs: function contextHistory_openPrefs() {
+    openDialog("chrome://contexthistory/content/", "contexthistory-config",
                "chrome, dialog, close, centerscreen");
   },
 
-  browserBack: function tabSession_browserBack(aEvent, aIgnoreAlt) {
+  browserBack: function contextHistory_browserBack(aEvent, aIgnoreAlt) {
     var where = whereToOpenLink(aEvent, false, aIgnoreAlt);
     if (where == "current") {
       try {
-        this.getBrowser().goBack();
+        this.tabBrowser.goBack();
       } catch (ex) {
       }
     } else {
@@ -116,11 +111,11 @@ var TabSession = {
     }
   },
 
-  browserForward: function tabSession_browserForward(aEvent, aIgnoreAlt) {
+  browserForward: function contextHistory_browserForward(aEvent, aIgnoreAlt) {
     var where = whereToOpenLink(aEvent, false, aIgnoreAlt);
     if (where == "current") {
       try {
-        this.getBrowser().goForward();
+        this.tabBrowser.goForward();
       } catch (ex) {
       }
     } else {
@@ -129,7 +124,7 @@ var TabSession = {
     }
   },
 
-  populateHistoryMenu: function tabSession_populateHistoryMenu(aNode) {
+  populateHistoryMenu: function contextHistory_populateHistoryMenu(aNode) {
     while (aNode.lastChild) {
       aNode.removeChild(aNode.lastChild);
     }
@@ -151,12 +146,13 @@ var TabSession = {
         mi.setAttribute("checked", true);
       } else {
         try {
-          var iconURL = Components.classes['@mozilla.org/browser/favicon-service;1']
-                                  .getService(Components.interfaces.nsIFaviconService)
-                                  .getFaviconForPage(this.getEntry(j).URI).spec;
+          var iconURL = Cc['@mozilla.org/browser/favicon-service;1'].
+                        getService(Ci.nsIFaviconService).
+                        getFaviconForPage(this.getEntry(j).URI).spec;
           mi.style.listStyleImage = "url(" + iconURL + ")";
         } catch (ex) {
-          mi.style.listStyleImage = "url(chrome://global/skin/icons/folder-item.png)";
+          mi.style.listStyleImage =
+                   "url(chrome://global/skin/icons/folder-item.png)";
           mi.style.MozImageRegion = "rect(0px, 16px, 16px, 0px)";
         }
         mi.className = "menuitem-iconic unified-nav-";
@@ -165,7 +161,8 @@ var TabSession = {
     }
   },
 
-  setItemAttributes: function tabSession_setItemAttr(aNode, aMenu, aCondition, aIndex) {
+  setItemAttributes: function contextHistory_setItemAttr(aNode, aMenu,
+                                                     aCondition, aIndex) {
     if (aCondition) {
       aNode.removeAttribute("tooltiptext");
     } else {
@@ -181,30 +178,29 @@ var TabSession = {
     if ((typeof gContextMenu == "object") && (gContextMenu != null)) {
       aNode.hidden = !this.menuShown("content" + this.MENU[aMenu]) ||
                      (this.menuShown("contentHiddenTabBarOnly") &&
-                      !getBrowser().mStrip.collapsed) ||
+                      !gBrowser.mStrip.collapsed) ||
                      (gContextMenu.isContentSelected ||
                        gContextMenu.onLink ||
                        gContextMenu.onImage ||
                        gContextMenu.onTextInput);
-    } else if (getBrowser().mContextTab) {
+    } else if (gBrowser.mContextTab) {
       aNode.hidden = !this.menuShown("tab" + this.MENU[aMenu]);
     } else {
       return;
     }
   },
 
-  initContext: function tabSession_initContext(aEvent) {
+  initContext: function contextHistory_initContext(aEvent) {
     if ((typeof gContextMenu == "object") && (gContextMenu != null)) {
-      getBrowser().mContextTab = null;
+      gBrowser.mContextTab = null;
     }
 
-    var browser = this.getBrowser();
-    var canGoBack = browser.webNavigation.canGoBack;
-    var canGoForward = browser.webNavigation.canGoForward;
+    var canGoBack = this.tabBrowser.webNavigation.canGoBack;
+    var canGoForward = this.tabBrowser.webNavigation.canGoForward;
     var index = this.history.index;
     var count = this.history.count;
-    var mBack, mForward, mStart, mLast, mHist;
 
+    var mBack, mForward, mStart, mLast, mHist;
     if ((typeof gContextMenu == "object") && (gContextMenu != null)) {
       mBack = document.getElementById("context-back");
       mForward = document.getElementById("context-forward");
@@ -213,12 +209,12 @@ var TabSession = {
       mHist = document.getElementById(this.CONTEXT_ID[1]);
       mHist.hidden = !this.menuShown("content" + this.MENU[0]) ||
                      (this.menuShown("contentHiddenTabBarOnly") &&
-                      !getBrowser().mStrip.collapsed) ||
+                      !gBrowser.mStrip.collapsed) ||
                      (gContextMenu.isContentSelected ||
                       gContextMenu.onLink || gContextMenu.onImage ||
                       gContextMenu.onTextInput);
 
-    } else if (getBrowser().mContextTab) {
+    } else if (gBrowser.mContextTab) {
       mBack = document.getElementById("tab" + this.CONTEXT_ID[5]);
       mForward = document.getElementById("tab" + this.CONTEXT_ID[4]);
       mStart = document.getElementById("tab" + this.CONTEXT_ID[3]);
@@ -237,23 +233,23 @@ var TabSession = {
     mLast.value = count - 1;
   },
 
-  init: function tabSession_init(aEvent) {
+  init: function contextHistory_init(aEvent) {
     var context = document.getElementById("contentAreaContextMenu");
     context.addEventListener("popupshowing", initMainContext = function(e) {
-      TabSession.initContext(e);
+      ContextHistory.initContext(e);
     }, false);
     context.removeEventListener("popuphiding", initMainContext, false);
 
     var tabContext = document.getElementById("tabContextMenu");
     tabContext.addEventListener("popupshowing", initTabContext = function(e) {
-      TabSession.initContext(e);
+      ContextHistory.initContext(e);
     }, false);
     tabContext.removeEventListener("popuphiding", initTabContext, false);
   }
 }
 
 window.addEventListener("load", initContextHistory = function(e) {
-  TabSession.init(e);
+  ContextHistory.init(e);
 }, false);
 
 window.removeEventListener("unload", initContextHistory, false);
