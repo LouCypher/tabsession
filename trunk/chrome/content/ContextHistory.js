@@ -257,6 +257,21 @@ var ContextHistory = {
       ContextHistory.initContext(e);
     }, false);
     tabContext.removeEventListener("popuphiding", initTabContext, false);
+
+    // Load donation page on first installation only
+    // Check connection first
+    //BrowserOffline.toggleOfflineStatus(); // offline test
+    if (this.prefs.getBoolPref("firstRun") && navigator.onLine) {
+      var req = new XMLHttpRequest();
+      req.open("GET", this.contributionURL, true);
+      req.onreadystatechange = function (aEvent) {
+        if ((req.readyState == 4) && (req.status == 200)) {
+          ContextHistory.prefs.setBoolPref("firstRun", false);
+          ContextHistory.contribute();
+        }
+      }
+      req.send(null);
+    }
   }
 }
 
