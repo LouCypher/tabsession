@@ -14,3 +14,6 @@ pref("extensions.Context_History.showMenu.tabHistory", true);
 
 pref("extensions.Context_History.showMenu.contentHiddenTabBarOnly", false);
 pref("extensions.Context_History.allowHidingContentBackForward", false);
+
+pref("extensions.pastetotab.firstRun", true);
+pref("extensions.pastetotab.contributionURL", "https://addons.mozilla.org/%LOCALE%/%APP%/addon/context-history/contribute/installed/");

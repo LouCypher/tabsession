@@ -6,10 +6,10 @@
     <em:type>2</em:type>
     <em:unpack>true</em:unpack>
     <em:name>Context History</em:name>
-    <em:version>0.5.7a.20120330.03</em:version>
+    <em:version>0.5.7a.20120420.01</em:version>
     <em:description>Navigates through browser history from main context menu and tab context menu.</em:description>
     <em:creator>LouCypher</em:creator>
-    <em:optionsURL>chrome://contexthistory/content/</em:optionsURL>
+    <em:optionsURL>chrome://contexthistory/content/options.xul</em:optionsURL>
     <em:iconURL>chrome://contexthistory/skin/contexthistory.png</em:iconURL>
     <em:homepageURL>http://tabsession.googlecode.com/</em:homepageURL>
     <em:targetApplication>

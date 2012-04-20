@@ -94,7 +94,8 @@ var ContextHistory = {
   },
 
   openPrefs: function contextHistory_openPrefs() {
-    openDialog("chrome://contexthistory/content/", "contexthistory-config",
+    openDialog("chrome://contexthistory/content/options.xul",
+               "contexthistory-config",
                "chrome, dialog, close, centerscreen");
   },
 
@@ -188,6 +189,17 @@ var ContextHistory = {
     } else {
       return;
     }
+  },
+
+  // Get and return contribution URL from pref
+  get contributionURL() {
+    return Services.urlFormatter
+                   .formatURL(this.prefs.getCharPref("contributionURL"));
+  },
+
+  // Load donation page
+  contribute: function pasteToTab_contribute() {
+    gBrowser.loadOneTab(this.contributionURL, null, null, null, false);
   },
 
   initContext: function contextHistory_initContext(aEvent) {
