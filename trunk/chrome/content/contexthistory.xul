@@ -43,7 +43,7 @@
   Components.utils.import("resource://gre/modules/Services.jsm");
   location.replace(Services.urlFormatter.formatURL(
                    Services.prefs.getCharPref(
-                   "extensions.pastetotab.contributionURL")));
+                   "extensions.Context_History.contributionURL")));
 ]]></script>
 </head>
 <body></body>
