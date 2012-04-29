@@ -6,7 +6,7 @@
     <em:type>2</em:type>
     <em:unpack>true</em:unpack>
     <em:name>Context History</em:name>
-    <em:version>0.5.7a2012043001</em:version>
+    <em:version>0.5.7a2012043002</em:version>
     <em:description>Navigates through browser history from main context menu and tab context menu.</em:description>
     <em:creator>LouCypher</em:creator>
     <em:optionsURL>chrome://contexthistory/content/options.xul</em:optionsURL>
