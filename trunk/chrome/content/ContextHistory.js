@@ -93,10 +93,21 @@ var ContextHistory = {
     }
   },
 
-  openPrefs: function contextHistory_openPrefs() {
-    openDialog("chrome://contexthistory/content/options.xul",
-               "contexthistory-config",
-               "chrome, dialog, close, centerscreen");
+  options: function contextHistory_openPrefs() {
+    var winName = "contexthistory-options";
+    var wenum = Services.ww.getWindowEnumerator();
+    var index = 1;
+    while (wenum.hasMoreElements()) {
+      var win = wenum.getNext();
+      if (win.name == winName) {
+        win.focus();
+        return;
+      }
+      index++;
+    }
+    openDialog("chrome://contexthistory/content/options.xul", winName,
+               "chrome, dialog, close, titlebar, "
+             + "centerscreen, resizable, minimizable");
   },
 
   browserBack: function contextHistory_browserBack(aEvent, aIgnoreAlt) {
@@ -199,7 +210,7 @@ var ContextHistory = {
 
   // Load donation page
   contribute: function pasteToTab_contribute() {
-    gBrowser.loadOneTab(this.contributionURL, null, null, null, false);
+    switchToTabHavingURI(this.contributionURL, true);
   },
 
   initContext: function contextHistory_initContext(aEvent) {

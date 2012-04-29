@@ -174,7 +174,7 @@
       insertbefore="menu_preferences"
       class="menuitem-iconic"
       label="&config.title;..."
-      oncommand="ContextHistory.openPrefs();"/>
+      oncommand="ContextHistory.options();"/>
   </menupopup>
 
   <menupopup id="appmenu_customizeMenu">
@@ -183,7 +183,7 @@
       insertafter="appmenu_preferences"
       class="menuitem-iconic"
       label="&config.title;"
-      oncommand="event.stopPropagation(); ContextHistory.openPrefs();"/>
+      oncommand="ContextHistory.options();"/>
   </menupopup>
 
 </overlay>
