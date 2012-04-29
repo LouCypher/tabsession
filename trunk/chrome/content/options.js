@@ -84,7 +84,11 @@ function contribute() {
   var mainWin = Services.wm.getMostRecentWindow("navigator:browser");
   if (mainWin) {
     mainWin.ContextHistory.contribute();
+    return;
   }
+  var url = Services.urlFormatter
+                    .formatURL(prefs.getCharPref("contributionURL"));
+  openLinkIn(url, "window", {});
 }
 
 function onLoad() {

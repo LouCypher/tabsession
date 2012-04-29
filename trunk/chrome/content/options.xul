@@ -282,5 +282,7 @@
   </prefpane>
 
   <script type="application/x-javascript" src="options.js"/>
+  <script type="application/x-javascript"
+          src="chrome://browser/content/utilityOverlay.js"/>
 
 </prefwindow>
