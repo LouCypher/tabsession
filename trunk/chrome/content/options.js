@@ -80,6 +80,13 @@ function toggleHide(aTMPstatus) {
   $("tabmixplus").hidden = !aTMPstatus;
 }
 
+function contribute() {
+  var mainWin = Services.wm.getMostRecentWindow("navigator:browser");
+  if (mainWin) {
+    mainWin.ContextHistory.contribute();
+  }
+}
+
 function onLoad() {
   var allowHidingContent = prefs.getBoolPref("allowHidingContentBackForward");
   disableBaFo(!allowHidingContent);

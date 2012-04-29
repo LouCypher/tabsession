@@ -55,8 +55,7 @@
   title="&config.title;"
   buttons="extra2, accept, cancel"
   buttonlabelextra2="&cmd.contribute.label;"
-  ondialogextra2="window.opener.ContextHistory.contribute();
- window.minimize();">
+  ondialogextra2="contribute(); minimize();">
 
   <prefpane
     id="prefpane-menu"
