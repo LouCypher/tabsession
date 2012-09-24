@@ -93,6 +93,19 @@ var ContextHistory = {
     }
   },
 
+  gotoStartPage: function contextHistory_gotoStartPage() {
+    if (this.history.index != 0) {
+      this.tabBrowser.webNavigation.gotoIndex(0);
+    }
+  },
+
+  gotoLastPage: function contextHistory_gotoLastPage() {
+    var count = this.history.count - 1;
+    if (this.history.index != count) {
+      this.tabBrowser.webNavigation.gotoIndex(count);
+    }
+  },
+
   options: function contextHistory_openPrefs() {
     var winName = "contexthistory-options";
     var wenum = Services.ww.getWindowEnumerator();

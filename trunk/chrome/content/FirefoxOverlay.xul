@@ -48,6 +48,17 @@
 
   <script type="application/x-javascript" src="contextHistory.js"/>
 
+  <keyset id="mainKeyset">
+    <key id="key-contexthistory-start"
+         keycode="VK_HOME"
+         modifiers="shift"
+         oncommand="ContextHistory.gotoStartPage();"/>
+    <key id="key-contexthistory-last"
+         keycode="VK_END"
+         modifiers="shift"
+         oncommand="ContextHistory.gotoLastPage();"/>
+  </keyset>
+
   <menupopup id="contentAreaContextMenu">
     <menuseparator
       id="context-contexthistory-separator"
